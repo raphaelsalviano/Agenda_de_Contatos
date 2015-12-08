@@ -1,0 +1,38 @@
+<resources>
+    <!-- Aplicação em geral -->
+    <string name="app_name">Agenda</string>
+    <string name="nothing_here">Não há nada aqui</string>
+    <string name="add_sucess">Contato salvo.</string>
+
+    <!-- Activityes e Fragments titles -->
+    <string name="title_activity_main">Contatos</string>
+    <string name="title_activity_add_contact">Adic. novo contato</string>
+    <string name="title_activity_contact">@string/title_activity_main</string>
+    <string name="title_activity_view_contact">ViewContactActivity</string>
+
+    <!-- Menus actions -->
+    <string name="action_about">Sobre</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_clean_all">Descartar alterações</string>
+    <string name="action_delete">Excluir</string>
+    <string name="action_edit">Editar</string>
+
+    <string name="alert_del_message">Este contato será excluído.</string>
+
+    <!-- Contacts Options -->
+    <string name="hint_name">Nome</string>
+    <string name="hint_last_name">Sobrenome</string>
+    <string name="hint_phone">Telefone</string>
+    <string name="hint_mail">E-mail</string>
+    <string name="about_text">\nContatos\nVersão 1.0.100\n\nUniversidade Federal da Paraíba\nCCAE - Campus IV\nDepartamento de Ciências Exatas\nNúcleo Ayty\nCurso Android</string>
+
+    <!-- Array's -->
+    <string-array name="type_contact_array">
+        <item>Celular</item>
+        <item>Residencial</item>
+        <item>Comercial</item>
+        <item>Outros</item>
+    </string-array>
+
+</resources>

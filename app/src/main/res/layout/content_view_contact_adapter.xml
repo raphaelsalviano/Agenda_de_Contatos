@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:id="@+id/call_contact"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="@dimen/word_card_contact"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_top_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:src="@drawable/ic_phone_grey600_48dp"
+        android:id="@+id/contato_img"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <br.com.ufpb.ayty.contatos.custom.RobotoLightTypeface
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title"
+            android:id="@+id/contact_number_adapter"
+            android:textColor="@color/md_text"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="AAAA"
+            android:layout_gravity="center_vertical"/>
+
+        <br.com.ufpb.ayty.contatos.custom.RobotoLightTypeface
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/contact_type_number"
+            android:text="AAAA"
+            android:layout_marginTop="@dimen/activity_top_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:textColor="@color/md_secondary_text_icons"
+            android:textSize="@dimen/subhead"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:clickable="true"
+        android:contextClickable="true"
+        android:id="@+id/message_contact"
+        android:layout_marginTop="@dimen/activity_top_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_width="@dimen/word_card_contact"
+        android:layout_height="@dimen/word_card_contact"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/ic_message_text_grey600_48dp"/>
+
+</LinearLayout>
