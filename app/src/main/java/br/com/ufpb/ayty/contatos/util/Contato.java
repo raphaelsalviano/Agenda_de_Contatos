@@ -1,26 +1,29 @@
 package br.com.ufpb.ayty.contatos.util;
 
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 
-
+@DatabaseTable(tableName = "contatos")
 public class Contato implements Serializable{
 
-
+    @DatabaseField(generatedId = true)
     private long id;
-
+    @DatabaseField
     private int idImage;
-
+    @DatabaseField
     private String nome;
-
+    @DatabaseField
     private String sobrenome;
-
+    @DatabaseField
     private String telefone;
-
+    @DatabaseField
     private String tipoTelefone;
-
+    @DatabaseField
     private String email;
-
+    @DatabaseField
     private String tipoEmail;
 
     public Contato() {

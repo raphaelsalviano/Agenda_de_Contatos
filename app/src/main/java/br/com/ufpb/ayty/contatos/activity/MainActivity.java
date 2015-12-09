@@ -7,12 +7,14 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class MainActivity extends BaseActivity {
     private AgendaApplication application;
 
     private RecyclerView recyclerView;
+    private ContatosAdapter adapter;
     private FloatingActionButton fab;
 
     private List<Contato> contatos;
@@ -61,7 +64,8 @@ public class MainActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new ContatosAdapter(contatos, getContext(), onClickListener()));
+        adapter = new ContatosAdapter(contatos, getContext(), onClickListener());
+        recyclerView.setAdapter(adapter);
         recyclerView.addOnScrollListener(new UpDownRecyclerScroll() {
             @Override
             public void show() {
@@ -93,7 +97,7 @@ public class MainActivity extends BaseActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setOnQueryTextListener(new SearchList());
+        searchView.setOnQueryTextListener(new SearchList(application, recyclerView));
 
         return true;
     }
@@ -116,22 +120,42 @@ public class MainActivity extends BaseActivity {
     }
 
     private class SearchList implements SearchView.OnQueryTextListener {
+        private AgendaApplication aplication;
+        private ContatosAdapter adapter;
+        private RecyclerView recyclerView;
+        public SearchList(AgendaApplication aplication, RecyclerView recyclerView) {
+            this.aplication = aplication;
+            this.recyclerView = recyclerView;
+        }
 
         @Override
         public boolean onQueryTextSubmit(String query) {
-            searchContatosView(query);
+            try {
+                searchContatosView(query);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             return true;
         }
 
         @Override
         public boolean onQueryTextChange(String newText) {
-            searchContatosView(newText);
+            try {
+                searchContatosView(newText);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             return true;
         }
 
 
-        private int searchContatosView(String text) {
-            return 0;
+        private void searchContatosView(String text) throws SQLException {
+            Log.i("orm", "."+text+".");
+            Log.i("orm", "-----------------------");
+            List<Contato> contatos = aplication.getContatosByName(text);
+            adapter = new ContatosAdapter(contatos, getBaseContext(), onClickListener());
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         }
     }
 

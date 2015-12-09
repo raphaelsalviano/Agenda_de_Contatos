@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.com.ufpb.ayty.contatos.AgendaApplication;
 import br.com.ufpb.ayty.contatos.R;
@@ -113,6 +114,10 @@ public class ViewContactActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     application.removerContato(contato);
+                    Toast.makeText(getBaseContext(), "Contato deletado!", Toast.LENGTH_SHORT).show();
+                    Intent intent= new Intent(ViewContactActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                 @Override

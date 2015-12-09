@@ -6,25 +6,40 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
+
+import java.sql.SQLException;
+
+import br.com.ufpb.ayty.contatos.util.Contato;
 
 public class DBHelper extends OrmLiteSqliteOpenHelper {
-
-    public static final String TAG = "DataBase";
-
-    private static final String DB_NAME = "Agenda";
-    private static final int DB_VERSION = 2;
+    private static final String databaseName = "contatos";
+    private static final int databaseVersion = 2;
 
     public DBHelper(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+        super(context, databaseName, null, databaseVersion);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
-
+        try {
+            TableUtils.createTable(connectionSource, Contato.class);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource, int i, int i1) {
-
+        try {
+            TableUtils.dropTable(connectionSource,Contato.class,true);
+            onCreate(sqLiteDatabase,connectionSource);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void close(){
+        super.close();
     }
 }
